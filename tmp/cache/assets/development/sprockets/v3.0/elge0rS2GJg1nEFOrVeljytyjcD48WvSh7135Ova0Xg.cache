@@ -1,0 +1,13 @@
+I"ó(function() {
+  var app;
+
+  app = angular.module("Hapily", ["ngResource"]);
+
+  this.SearchCtrl = function($scope, $resource) {
+    var Search;
+    Search = $resource('/display/');
+    return $scope.results = Search.get();
+  };
+
+}).call(this);
+:ET

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+<h1>Search</h1>
+
+	<!-- JQuery-eer onchange submit gej uzeerei next -->
+	<%= render 'conditioned_search_ransack' %>
+
+
+
+<h1>Listing Products</h1>
+<div id="products">
+  <%= render 'products' %>
+</div>
+<br>
+<%= will_paginate @products %><br>
+<%= link_to 'New Product', new_product_path %>

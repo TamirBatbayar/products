@@ -1,0 +1,31 @@
+<h1>ImportData#index</h1>
+<%= form_tag import_path, multipart: true do %>
+	<%= file_field_tag :file %>
+	<%= submit_tag "ImportData" %>
+<% end %>
+
+<% if @csv %>
+
+	<table class="table">
+	  <thead>
+	    <tr>
+	    <th>Name</th>
+	    <th>Price</th>
+	    <th>Supplier=id</th>
+	      <th>Detail</th>
+	    </tr>
+	  </thead>
+
+	  <tbody>
+	    <% @csv.each do |row| %>
+	    	<% product = row.to_hash %>
+	      <tr>
+	        <td><%= product['name'] %></td>
+	        <td><%= product['price'] %></td>
+	        <td><%= product['supplier_id'] %></td>
+	        <td><%= product['detail'] %></td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+<% end %>

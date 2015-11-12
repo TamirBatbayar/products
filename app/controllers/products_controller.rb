@@ -12,9 +12,6 @@ class ProductsController < ApplicationController
     Product.import(params[:file])
     @csv_text = File.read('/home/itet/Documents/products.csv')
     @csv = CSV.parse(@csv_text, :headers => true)
-    # @csv.each do |row|
-    #   row.to_hash
-    # end
 
     # raise @csv.first.to_hash['detail'].to_yaml
     # redirect_to import_page_path, notice: "Products imported"
@@ -23,7 +20,16 @@ class ProductsController < ApplicationController
 
   def index
     if params[:search]
-      # raise params[:search].to_yaml
+      # ========== Unix search heseg end bairlana =================
+      # filemaa = "top_products"
+      # @result = `./shell/search.sh #{params[:search]}`
+
+      # @csv_text = File.read("/home/itet/Documents/#{params[:search]}.csv")
+      # @csv = CSV.parse(@csv_text, :headers => true)
+       # =========================================================
+
+       # raise @result.to_yaml
+      # MYSQL hailt
       @search = Product.search(params[:search])
       @products = @search.paginate(:page => params[:page], :per_page => 10)
     else
@@ -96,7 +102,7 @@ class ProductsController < ApplicationController
       else
         format.html { render :edit }
         format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+      end 
     end
   end
 
